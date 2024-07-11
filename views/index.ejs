@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <style>
-        /* Custom CSS styles can go here */
+        .list-group-item-response {
+            margin-left: 1.5rem;
+            background-color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
@@ -38,29 +41,18 @@
     <div class="container mt-4">
         <h1 class="mb-4">Laporan</h1>
         <a href="/report" class="btn btn-primary mb-4">Buat Laporan</a>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Isi Laporan</th>
-                        <th>Respon</th>
-                        <th>Waktu Laporan</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% reports.sort((a, b) => new Date(b.reportTime) - new Date(a.reportTime)).forEach(report => { %>
-                    <tr class="<%= report.isAnswered ? 'table-success' : 'table-danger' %>">
-                        <td><%= report.name %></td>
-                        <td><%= report.reportContent %></td>
-                        <td><%= report.response %></td>
-                        <td><%= new Date(report.reportTime).toLocaleString() %></td>
-                        <td><%= report.isAnswered ? 'Dijawab' : 'Belum Dijawab' %></td>
-                    </tr>
-                    <% }) %>
-                </tbody>
-            </table>
+        <div class="list-group">
+            <% reports.sort((a, b) => new Date(b.reportTime) - new Date(a.reportTime)).forEach(report => { %>
+            <div class="list-group-item <%= report.isAnswered ? 'list-group-item-success' : 'list-group-item-danger' %>">
+                <h5 class="mb-1"><%= report.name %></h5>
+                <p class="mb-1"><%= report.reportContent %></p>
+                <small class="text-muted"><%= new Date(report.reportTime).toLocaleString() %></small>
+            </div>
+            <div class="list-group-item list-group-item-response">
+                <p class="mb-1"><%= report.response ? report.response : 'Belum ada respon' %></p>
+                <small class="text-muted"><%= report.isAnswered ? 'Dijawab' : 'Belum Dijawab' %></small>
+            </div>
+            <% }) %>
         </div>
     </div>
 

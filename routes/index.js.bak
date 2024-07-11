@@ -4,7 +4,6 @@ const Report = require('../models/report');
 const path = require('path');
 const mongoose = require('mongoose');
 
-// Example route handler for rendering index.ejs
 router.get('/', async (req, res) => {
     try {
         const reports = await Report.find({});

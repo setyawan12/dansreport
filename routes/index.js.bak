@@ -4,14 +4,8 @@ const Report = require('../models/report');
 const path = require('path');
 const mongoose = require('mongoose');
 
-router.get('/', async (req, res) => {
-    try {
-        const reports = await Report.find({});
-        res.render('index', { reports });  // Pastikan 'index' sesuai dengan nama file view
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error');
-    }
+router.get('/', (req, res) => {
+    res.render(path.join(__dirname, '../views', 'index')); // Gunakan path absolut atau relatif yang benar
 });
 
 module.exports = router;

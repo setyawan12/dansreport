@@ -16,7 +16,6 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
 // Session setup with MongoDB store
 const sessionStore = MongoStore.create({
     mongoUrl: process.env.MONGODB_URI,
@@ -42,13 +41,13 @@ app.use('/report', reportRoutes);
 app.use('/admin', adminRoutes);
 
 // Set up mongoose connection
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,  // Tambahkan opsi ini
-})
-.then(() => console.log('MongoDB Connected'))
-.catch(err => console.error('MongoDB Connection Error:', err));
-
+mongoose
+    .connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log('MongoDB Connected'))
+    .catch((err) => console.error('MongoDB Connection Error:', err));
 
 // Start the server
 const PORT = process.env.PORT || 3000;

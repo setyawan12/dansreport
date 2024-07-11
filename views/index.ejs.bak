@@ -1,0 +1,73 @@
+                                                                        <!DOCTYPE html>
+                                                                        <html lang="en">
+                                                                        <head>
+                                                                            <meta charset="UTF-8">
+                                                                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                                                            <title>Laporan</title>
+                                                                            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                                                                            <link rel="stylesheet" href="/css/styles.css">
+                                                                            <style>
+                                                                                /* Custom CSS styles can go here */
+                                                                            </style>
+                                                                        </head>
+                                                                        <body>
+                                                                            <header>
+                                                                                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                                                                                    <div class="container">
+                                                                                        <a class="navbar-brand" href="#">Dans Report</a>
+                                                                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                                                                            <span class="navbar-toggler-icon"></span>
+                                                                                        </button>
+                                                                                        <div class="collapse navbar-collapse" id="navbarNav">
+                                                                                            <ul class="navbar-nav ml-auto">
+                                                                                                <li class="nav-item active">
+                                                                                                    <a class="nav-link" href="/">Beranda</a>
+                                                                                                </li>
+                                                                                                <li class="nav-item">
+                                                                                                    <a class="nav-link" href="https://wa.me/6285198506820">WABOT</a>
+                                                                                                </li>
+                                                                                                <li class="nav-item">
+                                                                                                    <a class="nav-link" href="/admin">admin</a>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </nav>
+                                                                            </header>
+
+                                                                            <div class="container mt-4">
+                                                                                <h1 class="mb-4">Laporan</h1>
+                                                                                <a href="/report" class="btn btn-primary mb-4">Buat Laporan</a>
+                                                                                <div class="table-responsive">
+                                                                                    <table class="table table-bordered">
+                                                                                        <thead>
+                                                                                            <tr>
+                                                                                                <th>Nama</th>
+                                                                                                <th>Isi Laporan</th>
+                                                                                                <th>Waktu Laporan</th>
+                                                                                                <th>Status</th>
+                                                                                                <th>Respon</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                            <% reports.forEach(report => { %>
+                                                                                            <tr class="<%= report.isAnswered ? 'table-success' : 'table-danger' %>">
+                                                                                                <td><%= report.name %></td>
+                                                                                                <td><%= report.reportContent %></td>
+                                                                                                <td><%= report.reportTime.toLocaleString() %></td>
+                                                                                                <td><%= report.isAnswered ? 'Dijawab' : 'Belum Dijawab' %></td>
+                                                                                                <td><%= report.response %></td>
+                                                                                            </tr>
+                                                                                            <% }) %>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            
+
+                                                                            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                                                                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+                                                                            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                                                                        </body>
+                                                                        </html>

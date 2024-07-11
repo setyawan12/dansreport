@@ -31,6 +31,10 @@
         .list-group-item-danger {
             border-left: 5px solid #dc3545;
         }
+        .divider {
+            border-top: 1px solid #dee2e6;
+            margin: 1rem 0;
+        }
         footer {
             margin-top: auto;
             background-color: #343a40;
@@ -75,7 +79,7 @@
         <h1 class="mb-4">Laporan</h1>
         <a href="/report" class="btn btn-primary mb-4">Buat Laporan</a>
         <div class="list-group">
-            <% reports.sort((a, b) => new Date(b.reportTime) - new Date(a.reportTime)).forEach(report => { %>
+            <% reports.sort((a, b) => new Date(b.reportTime) - new Date(a.reportTime)).forEach((report, index) => { %>
             <div class="list-group-item animate__animated animate__fadeIn <%= report.isAnswered ? 'list-group-item-success' : 'list-group-item-danger' %>">
                 <h5 class="mb-1"><%= report.name %></h5>
                 <p class="mb-1"><%= report.reportContent %></p>
@@ -85,6 +89,9 @@
                 <p class="mb-1"><%= report.response ? report.response : 'Belum ada respon' %></p>
                 <small class="text-muted"><%= report.isAnswered ? 'Dijawab' : 'Belum Dijawab' %></small>
             </div>
+            <% if (index < reports.length - 1) { %>
+            <div class="divider"></div>
+            <% } %>
             <% }) %>
         </div>
     </div>
@@ -93,9 +100,8 @@
         <div class="container text-center">
             <p class="mb-0">&copy; 2024 Dans Report. All Rights Reserved.</p>
             <small>
-                <a href="/">Beranda</a> |
-                <a href="https://wa.me/6285198506820">WABOT</a> |
-                <a href="/admin">Admin</a>
+                Email: <a href="mailto:danssety@gmail.com">danssety@gmail.com</a> |
+                Address: Klaten, ID
             </small>
         </div>
     </footer>

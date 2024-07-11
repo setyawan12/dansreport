@@ -1,66 +1,67 @@
-                                        <!-- views/admin.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Laporan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                                        <!DOCTYPE html>
-                                        <html>
-                                        <head>
-                                            <title>Admin Laporan</title>
-                                            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-                                        </head>
-                                        <body>
-                                            <div class="container">
-                                                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                                                    <a class="navbar-brand" href="/">Admin Panel</a>
-                                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                                        <span class="navbar-toggler-icon"></span>
-                                                    </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <!-- You can add more navigation items here -->
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <a class="btn btn-outline-danger my-2 my-sm-0" href="/">Kembali</a>
+                </form>
+            </div>
+        </nav>
 
-                                                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                                        <ul class="navbar-nav mr-auto">
-                                                            <!-- You can add more navigation items here -->
-                                                        </ul>
-                                                        <form class="form-inline my-2 my-lg-0">
-                                                            <a class="btn btn-outline-danger my-2 my-sm-0" href="/">Kembali</a>
-                                                        </form>
-                                                    </div>
-                                                </nav>
-
-                                                <h1>Admin Laporan</h1>
-                                                <table class="table">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>Nama</th>
-                                                            <th>Email</th>
-                                                            <th>Nomor WhatsApp</th>
-                                                            <th>Nomor Laporan</th>
-                                                            <th>Isi Laporan</th>
-                                                            <th>Waktu Laporan</th>
-                                                            <th>Respon</th>
-                                                            <th>Aksi</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <% reports.forEach(report => { %>
-                                                            <tr>
-                                                                <td><%= report.name %></td>
-                                                                <td><%= report.email %></td>
-                                                                <td><%= report.whatsapp %></td> <!-- Display WhatsApp number -->
-                                                                <td><%= report.reportNumber %></td>
-                                                                <td><%= report.reportContent %></td>
-                                                                <td><%= report.reportTime.toLocaleString() %></td>
-                                                                <td><%= report.response %></td>
-                                                                <td>
-                                                                    <% if (!report.isAnswered) { %>
-                                                                        <form action="/admin/respond" method="POST">
-                                                                            <input type="hidden" name="reportId" value="<%= report._id %>">
-                                                                            <input type="text" name="response" class="form-control" required>
-                                                                            <button type="submit" class="btn btn-primary">Kirim Respon</button>
-                                                                        </form>
-                                                                    <% } %>
-                                                                </td>
-                                                            </tr>
-                                                        <% }) %>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </body>
-                                        </html>
+        <h1>Admin Laporan</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Nomor WhatsApp</th>
+                    <th>Nomor Laporan</th>
+                    <th>Isi Laporan</th>
+                    <th>Waktu Laporan</th>
+                    <th>Respon</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% reports.forEach(report => { %>
+                    <tr>
+                        <td><%= report.name %></td>
+                        <td><%= report.email %></td>
+                        <td><%= report.whatsapp %></td> <!-- Display WhatsApp number -->
+                        <td><%= report.reportNumber %></td>
+                        <td><%= report.reportContent %></td>
+                        <td><%= report.reportTime.toLocaleString() %></td>
+                        <td><%= report.response %></td>
+                        <td>
+                            <% if (!report.isAnswered) { %>
+                                <form action="/admin/respond" method="POST">
+                                    <input type="hidden" name="reportId" value="<%= report._id %>">
+                                    <input type="text" name="response" class="form-control" required>
+                                    <button type="submit" class="btn btn-primary">Kirim Respon</button>
+                                </form>
+                            <% } %>
+                            <form action="/admin/report/<%= report._id %>?_method=DELETE" method="POST">
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

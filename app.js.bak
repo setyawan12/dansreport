@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
+const MongoStore = require('connect-mongo');
 const dotenv = require("dotenv");
 const Report = require("./models/report");
 
@@ -19,11 +20,11 @@ app.use(
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
-        store: MongoStore.create({
+        store: MongoStore.create({ 
             mongoUrl: process.env.MONGODB_URI,
             collectionName: 'sessions'
         })
-    }),
+    })
 );
 
 // Routes
@@ -40,13 +41,8 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     .then(() => console.log('MongoDB Connected'))
     .catch(err => console.error('MongoDB Connection Error:', err));
 
-// Export the app (this is crucial for Vercel)
-module.exports = app;
-
-// Only listen if not in test environment (Vercel handles listening)
-if (require.main === module) {
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`);
-    });
-}
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

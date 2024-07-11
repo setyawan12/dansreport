@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan</title>
+    <title>Report</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
@@ -40,6 +40,10 @@
             background-color: #343a40;
             color: white;
             padding: 1rem 0;
+        }
+        footer img {
+            max-width: 100px;
+            margin-bottom: 10px;
         }
         footer a {
             color: #adb5bd;
@@ -98,11 +102,7 @@
 
     <footer class="mt-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; 2024 Dans Report. All Rights Reserved.</p>
-            <small>
-                Email: <a href="mailto:danssety@gmail.com">danssety@gmail.com</a> |
-                Address: Klaten, ID
-            </small>
+            <img src="path/to/your/logo.png" alt="Dans Report Logo">
         </div>
     </footer>
 

@@ -1,0 +1,35 @@
+.table-danger {
+  background-color: #f8d7da;
+  animation: pulse 2s infinite;
+}
+
+.table-success {
+  background-color: #d4edda;
+}
+
+@keyframes pulse {
+  0% { background-color: #f8d7da; }
+  50% { background-color: #f1b0b7; }
+  100% { background-color: #f8d7da; }
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  min-height: 100%;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40; /* Sesuaikan dengan warna latar belakang footer Anda */
+  color: #fff; /* Warna teks footer */
+  text-align: center;
+  padding: 10px 0; /* Sesuaikan padding sesuai kebutuhan */
+}

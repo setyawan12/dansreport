@@ -5,11 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        body {
+            background-color: #f0f2f5;
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .list-group-item {
+            margin-bottom: 1rem;
+        }
         .list-group-item-response {
             margin-left: 1.5rem;
-            background-color: #f8f9fa;
+            background-color: #e9ecef;
+            border-left: 5px solid #17a2b8;
+        }
+        .list-group-item-success {
+            border-left: 5px solid #28a745;
+        }
+        .list-group-item-danger {
+            border-left: 5px solid #dc3545;
         }
     </style>
 </head>
@@ -30,7 +47,7 @@
                             <a class="nav-link" href="https://wa.me/6285198506820">WABOT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin">admin</a>
+                            <a class="nav-link" href="/admin">Admin</a>
                         </li>
                     </ul>
                 </div>
@@ -43,12 +60,12 @@
         <a href="/report" class="btn btn-primary mb-4">Buat Laporan</a>
         <div class="list-group">
             <% reports.sort((a, b) => new Date(b.reportTime) - new Date(a.reportTime)).forEach(report => { %>
-            <div class="list-group-item <%= report.isAnswered ? 'list-group-item-success' : 'list-group-item-danger' %>">
+            <div class="list-group-item animate__animated animate__fadeIn <%= report.isAnswered ? 'list-group-item-success' : 'list-group-item-danger' %>">
                 <h5 class="mb-1"><%= report.name %></h5>
                 <p class="mb-1"><%= report.reportContent %></p>
                 <small class="text-muted"><%= new Date(report.reportTime).toLocaleString() %></small>
             </div>
-            <div class="list-group-item list-group-item-response">
+            <div class="list-group-item list-group-item-response animate__animated animate__fadeIn">
                 <p class="mb-1"><%= report.response ? report.response : 'Belum ada respon' %></p>
                 <small class="text-muted"><%= report.isAnswered ? 'Dijawab' : 'Belum Dijawab' %></small>
             </div>

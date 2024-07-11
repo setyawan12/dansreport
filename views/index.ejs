@@ -74,7 +74,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/">Beranda</a>
                         </li>
-						<li class="nav-item active">
+                        <li class="nav-item active">
                             <a class="nav-link" href="https://dansteam.my.id">WebHome</a>
                         </li>
                         <li class="nav-item">
@@ -97,7 +97,9 @@
             <div class="list-group-item animate__animated animate__fadeIn <%= report.isAnswered ? 'list-group-item-success' : 'list-group-item-danger' %>">
                 <h5 class="mb-1"><%= report.name %></h5>
                 <p class="mb-1"><%= report.reportContent %></p>
-                <small class="text-muted"><%= new Date(report.reportTime).toLocaleString() %></small>
+                <small class="text-muted">
+                    <%= new Date(report.reportTime).toLocaleString("en-US", { timeZone: "Asia/Jakarta" }) %>
+                </small>
             </div>
             <div class="list-group-item list-group-item-response animate__animated animate__fadeIn">
                 <p class="mb-1"><%= report.response ? report.response : 'Belum ada respon' %></p>
@@ -110,7 +112,7 @@
         </div>
     </div>
 
-    <footer class="mt-4">
+    <footer>
         <div class="container text-center">
             <p class="mb-0">&copy; 2024 Dans. All Rights Reserved.</p>
             <div class="icon-box">

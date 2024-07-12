@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const Report = require('../models/report');
+const moment = require('moment-timezone'); // Tambahkan ini
 
 router.get('/', async (req, res) => {
     const reports = await Report.find({});
-    res.render('index', { reports });
+    const formattedReports = reports.map(report => ({
+        ...report.toObject(),
+        reportTime: moment(report.reportTime).tz('Asia/Jakarta').format('LLLL') // Format waktu WIB
+    }));
+    res.render('index', { reports: formattedReports });
 });
 
 module.exports = router;

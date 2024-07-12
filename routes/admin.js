@@ -26,11 +26,13 @@ router.get('/', async (req, res) => {
     if (!req.session.admin) {
         return res.redirect('/admin/login');
     }
-    const reports = await Report.find({});
-    res.render('admin', { reports: reports.map(report => ({
-        ...report.toObject(),
-        reportTime: moment(report.reportTime).tz('Asia/Jakarta').format('LLLL') // Format waktu WIB
-    })) });
+    try {
+        const reports = await Report.find({});
+        res.render('admin', { reports });
+    } catch (err) {
+        console.error('Error fetching reports:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
 });
 
 // Route to delete report by ID
